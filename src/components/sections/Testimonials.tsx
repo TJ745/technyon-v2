@@ -25,51 +25,22 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      style={{
-        padding: "120px 5vw",
-        background: "var(--color-bg-deep)",
-        borderTop: "1px solid rgba(200,151,63,0.18)",
-      }}
+      className="px-[5vw] py-20 md:py-[120px] bg-bg-deep border-t border-border"
     >
       {/* Header */}
-      <div
-        className="reveal"
-        style={{
-          maxWidth: "1300px",
-          margin: "0 auto 4rem",
-          textAlign: "center",
-        }}
-      >
-        <div
-          className="section-label"
-          style={{ justifyContent: "center", display: "inline-flex" }}
-        >
-          Client Reviews
-        </div>
+      <div className="reveal max-w-[1300px] mx-auto mb-10 md:mb-16 text-center">
+        <div className="section-label justify-center">Client Reviews</div>
         <h2
-          style={{
-            fontFamily: "var(--font-display)",
-            fontWeight: 800,
-            fontSize: "clamp(2rem, 3.5vw, 3rem)",
-            lineHeight: 1.1,
-          }}
+          className="font-display font-extrabold leading-[1.1]"
+          style={{ fontSize: "clamp(1.8rem, 3.5vw, 3rem)" }}
         >
-          Trusted by{" "}
-          <span style={{ color: "var(--color-gold-bright)" }}>Discerning</span>{" "}
+          Trusted by <span className="text-gold-bright">Discerning</span>{" "}
           Customers
         </h2>
       </div>
 
-      {/* Grid */}
-      <div
-        style={{
-          maxWidth: "1300px",
-          margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "2px",
-        }}
-      >
+      {/* Grid — 1 col mobile, 2 col tablet, 3 col desktop */}
+      <div className="max-w-[1300px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[2px]">
         {testimonials.map((t) => (
           <TestimonialCard key={t.name} {...t} />
         ))}
@@ -90,108 +61,29 @@ function TestimonialCard({
   initials: string;
 }) {
   return (
-    <div
-      className="reveal gold-border-card"
-      style={{
-        padding: "40px 36px",
-        position: "relative",
-        transition: "transform 0.3s, box-shadow 0.3s",
-      }}
-      onMouseEnter={(e) => {
-        const el = e.currentTarget as HTMLElement;
-        el.style.transform = "translateY(-4px)";
-        el.style.boxShadow =
-          "0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(200,151,63,0.08)";
-      }}
-      onMouseLeave={(e) => {
-        const el = e.currentTarget as HTMLElement;
-        el.style.transform = "translateY(0)";
-        el.style.boxShadow = "none";
-      }}
-    >
-      {/* Quote mark */}
-      <span
-        style={{
-          fontFamily: "var(--font-display)",
-          fontSize: "4rem",
-          lineHeight: 1,
-          color: "var(--color-gold-base)",
-          opacity: 0.4,
-          marginBottom: "1rem",
-          display: "block",
-        }}
-      >
+    <div className="reveal gold-border-card p-8 md:p-10 relative transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(0,0,0,0.4),0_0_40px_rgba(200,151,63,0.08)]">
+      <span className="block font-display text-[3.5rem] md:text-[4rem] leading-none text-gold-base/40 mb-3">
         &ldquo;
       </span>
-
-      {/* Stars */}
-      <div style={{ display: "flex", gap: "4px", marginBottom: "1.2rem" }}>
+      <div className="flex gap-1 mb-4">
         {Array.from({ length: 5 }).map((_, i) => (
-          <span
-            key={i}
-            style={{ color: "var(--color-gold-bright)", fontSize: "0.9rem" }}
-          >
+          <span key={i} className="text-gold-bright text-sm">
             ★
           </span>
         ))}
       </div>
-
-      {/* Text */}
-      <p
-        style={{
-          color: "var(--color-text-muted)",
-          fontSize: "0.95rem",
-          lineHeight: 1.8,
-          marginBottom: "2rem",
-          fontWeight: 300,
-        }}
-      >
+      <p className="text-text-muted text-sm md:text-[0.95rem] leading-[1.8] font-light mb-7">
         {text}
       </p>
-
-      {/* Author */}
-      <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-        <div
-          style={{
-            width: "42px",
-            height: "42px",
-            borderRadius: "50%",
-            background:
-              "linear-gradient(135deg, var(--color-gold-dim), var(--color-gold-base))",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontFamily: "var(--font-display)",
-            fontWeight: 700,
-            fontSize: "0.9rem",
-            color: "var(--color-bg-void)",
-            flexShrink: 0,
-            border: "1px solid var(--color-gold-dim)",
-          }}
-        >
+      <div className="flex items-center gap-3.5">
+        <div className="w-10 h-10 md:w-[42px] md:h-[42px] rounded-full bg-gradient-to-br from-gold-dim to-gold-base flex items-center justify-center font-display font-bold text-sm text-bg-void shrink-0 border border-gold-dim">
           {initials}
         </div>
         <div>
-          <div
-            style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 600,
-              fontSize: "0.9rem",
-              color: "var(--color-text-white)",
-              marginBottom: "2px",
-            }}
-          >
+          <div className="font-display font-semibold text-sm text-text-white mb-0.5">
             {name}
           </div>
-          <div
-            style={{
-              fontSize: "0.75rem",
-              color: "var(--color-text-muted)",
-              letterSpacing: "0.08em",
-            }}
-          >
-            {loc}
-          </div>
+          <div className="text-xs text-text-muted tracking-[0.08em]">{loc}</div>
         </div>
       </div>
     </div>

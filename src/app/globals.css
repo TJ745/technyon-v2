@@ -19,7 +19,9 @@
 }
 
 /* ── BASE ── */
+@layer base {
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
 html { scroll-behavior: smooth; }
 
 body {
@@ -29,6 +31,7 @@ body {
   overflow-x: hidden;
   cursor: none;
 }
+
 
 /* ── NOISE OVERLAY ── */
 body::before {
@@ -41,6 +44,14 @@ body::before {
   opacity: 0.025;
 }
 
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--color-bg-void); }
+::-webkit-scrollbar-thumb { background: var(--color-gold-dim); border-radius: 2px; }
+
+}
+
+@layer components {
 /* ── SECTION Z ── */
 section { position: relative; z-index: 2; }
 
@@ -72,10 +83,7 @@ section { position: relative; z-index: 2; }
 .cursor-dot.hovered  { width: 6px; height: 6px; }
 .cursor-ring.hovered { width: 52px; height: 52px; opacity: 1; }
 
-/* ── SCROLLBAR ── */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--color-bg-void); }
-::-webkit-scrollbar-thumb { background: var(--color-gold-dim); border-radius: 2px; }
+
 
 /* ── REVEAL ── */
 .reveal {
@@ -217,4 +225,5 @@ section { position: relative; z-index: 2; }
   50%  { transform: scaleY(1); transform-origin: top; }
   51%  { transform: scaleY(1); transform-origin: bottom; }
   100% { transform: scaleY(0); transform-origin: bottom; }
+}
 }

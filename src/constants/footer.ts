@@ -24,5 +24,6 @@ export const socialLinks = [
   {
     label: "Amazon Store",
     href: "https://www.amazon.co.uk/s?me=A161RUNEUG288T&marketplaceID=A1F83G8C2ARO7P",
+    external: true,
   },
 ];

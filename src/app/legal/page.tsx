@@ -173,7 +173,7 @@ export default function LegalPage() {
       <Section title="10. Contact & Complaints">
         <Para>
           If you have a legal concern, complaint, or require further information
-          regarding any of the above, please contact us in the first instance:
+          regarding any of the above, please contact us:
         </Para>
         <List
           items={[

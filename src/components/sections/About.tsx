@@ -4,73 +4,27 @@ export default function About() {
   return (
     <section
       id="about"
+      className="px-[5vw] py-20 md:py-[120px]"
       style={{
-        padding: "120px 5vw",
         background:
           "linear-gradient(180deg, var(--color-bg-void) 0%, var(--color-bg-deep) 50%, var(--color-bg-void) 100%)",
       }}
     >
-      <div
-        style={{
-          maxWidth: "1300px",
-          margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "6rem",
-          alignItems: "center",
-        }}
-      >
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
         {/* Image */}
-        <div className="reveal" style={{ position: "relative" }}>
+        <div className="reveal relative">
           <Image
-            src=""
+            src="/images/aboutus.png"
             alt="About Technyon"
             width={600}
             height={500}
-            style={{
-              width: "100%",
-              height: "auto",
-              borderRadius: "4px",
-              filter: "saturate(0.7) brightness(0.85)",
-              display: "block",
-            }}
+            className="w-full h-auto rounded-sm block"
+            style={{ filter: "saturate(0.7) brightness(0.85)" }}
           />
-          {/* Gold overlay */}
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background:
-                "linear-gradient(135deg, rgba(200,151,63,0.15) 0%, transparent 60%)",
-              borderRadius: "4px",
-              pointerEvents: "none",
-            }}
-          />
-          {/* Corner accents */}
-          <div
-            style={{
-              position: "absolute",
-              top: "-16px",
-              right: "-16px",
-              width: "120px",
-              height: "120px",
-              borderTop: "2px solid var(--color-gold-base)",
-              borderRight: "2px solid var(--color-gold-base)",
-              borderRadius: "0 4px 0 0",
-            }}
-          />
-          <div
-            style={{
-              position: "absolute",
-              bottom: "-16px",
-              left: "-16px",
-              width: "120px",
-              height: "120px",
-              borderBottom: "2px solid var(--color-gold-base)",
-              borderLeft: "2px solid var(--color-gold-base)",
-              borderRadius: "0 0 0 4px",
-            }}
-          />
+          <div className="absolute inset-0 rounded-sm pointer-events-none bg-gradient-to-br from-gold-base/15 to-transparent" />
+          {/* Corner accents — smaller on mobile */}
+          <div className="absolute top-[-10px] right-[-10px] md:top-[-16px] md:right-[-16px] w-16 h-16 md:w-[120px] md:h-[120px] border-t-2 border-r-2 border-gold-base rounded-[0_4px_0_0]" />
+          <div className="absolute bottom-[-10px] left-[-10px] md:bottom-[-16px] md:left-[-16px] w-16 h-16 md:w-[120px] md:h-[120px] border-b-2 border-l-2 border-gold-base rounded-[0_0_0_4px]" />
         </div>
 
         {/* Text */}
@@ -78,42 +32,21 @@ export default function About() {
           <div className="section-label">Our Story</div>
 
           <h2
-            style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 800,
-              fontSize: "clamp(2rem, 3.5vw, 3rem)",
-              lineHeight: 1.1,
-              marginBottom: "1.5rem",
-            }}
+            className="font-display font-extrabold leading-[1.1] mb-6"
+            style={{ fontSize: "clamp(1.8rem, 3.5vw, 3rem)" }}
           >
             Technology Should Work{" "}
-            <span style={{ color: "var(--color-gold-bright)" }}>For You</span>
+            <span className="text-gold-bright">For You</span>
           </h2>
 
-          <p
-            style={{
-              color: "var(--color-text-muted)",
-              lineHeight: 1.85,
-              fontSize: "0.98rem",
-              fontWeight: 300,
-              marginBottom: "1.2rem",
-            }}
-          >
+          <p className="text-text-muted leading-[1.85] text-[0.98rem] font-light mb-5">
             At TECHNYON, we believe great technology shouldn&apos;t require
             compromise. We curate a refined selection of top-quality electronics
             that fit seamlessly into modern living — from intelligent kitchen
             systems to cutting-edge entertainment and everyday gadgets.
           </p>
 
-          <p
-            style={{
-              color: "var(--color-text-muted)",
-              lineHeight: 1.85,
-              fontSize: "0.98rem",
-              fontWeight: 300,
-              marginBottom: "2rem",
-            }}
-          >
+          <p className="text-text-muted leading-[1.85] text-[0.98rem] font-light mb-8">
             Every product earns its place through rigorous evaluation of
             performance, reliability, and value. We connect you to trusted
             Amazon listings today — and our own direct platform is coming, built
@@ -121,23 +54,8 @@ export default function About() {
           </p>
 
           {/* Pull quote */}
-          <div
-            style={{
-              padding: "24px 28px",
-              background: "var(--color-bg-card)",
-              borderLeft: "2px solid var(--color-gold-base)",
-              borderRadius: "0 2px 2px 0",
-            }}
-          >
-            <p
-              style={{
-                color: "var(--color-gold-pale)",
-                fontStyle: "italic",
-                fontSize: "0.95rem",
-                lineHeight: 1.7,
-                fontWeight: 300,
-              }}
-            >
+          <div className="p-5 md:p-6 bg-bg-card border-l-2 border-gold-base rounded-[0_2px_2px_0]">
+            <p className="text-gold-pale italic text-sm md:text-[0.95rem] leading-[1.7] font-light">
               &ldquo;We choose only what we&apos;d use ourselves — quality that
               speaks before the price tag.&rdquo;
             </p>

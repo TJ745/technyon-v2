@@ -1,78 +1,31 @@
 "use client";
 
+import { AMAZON_URL, products } from "@/constants/products";
 import Image from "next/image";
 import Link from "next/link";
 
-const AMAZON_URL =
-  "https://www.amazon.co.uk/s?me=A161RUNEUG288T&marketplaceID=A1F83G8C2ARO7P";
-
-const products = [
-  {
-    category: "Smart Home",
-    name: "Intelligent Appliances",
-    img: "",
-    alt: "Smart Home Device",
-  },
-  {
-    category: "Electronics",
-    name: "Premium Gadgets",
-    img: "",
-    alt: "Electronics",
-  },
-  {
-    category: "Entertainment",
-    name: "Audio & Visual Systems",
-    img: "",
-    alt: "Entertainment Tech",
-  },
-];
-
 export default function Products() {
   return (
-    <section id="products" style={{ padding: "120px 5vw" }}>
+    <section id="products" className="px-[5vw] py-20 md:py-[120px]">
       {/* Header */}
-      <div
-        className="reveal"
-        style={{
-          maxWidth: "1300px",
-          margin: "0 auto 4rem",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "flex-end",
-          flexWrap: "wrap",
-          gap: "1.5rem",
-        }}
-      >
+      <div className="reveal max-w-[1300px] mx-auto mb-10 md:mb-16 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-5">
         <div>
           <div className="section-label">Curated Collection</div>
           <h2
-            style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 800,
-              fontSize: "clamp(2rem, 3.5vw, 3rem)",
-              lineHeight: 1.1,
-            }}
+            className="font-display font-extrabold leading-[1.1]"
+            style={{ fontSize: "clamp(1.8rem, 3.5vw, 3rem)" }}
           >
-            Tech That{" "}
-            <span style={{ color: "var(--color-gold-bright)" }}>Elevates</span>{" "}
-            Every Day
+            Tech That <span className="text-gold-bright">Elevates</span> Every
+            Day
           </h2>
         </div>
-        <Link href="/allproducts" className="btn-secondary">
+        <Link href="/allproducts" className="btn-secondary shrink-0">
           Browse All
         </Link>
       </div>
 
-      {/* Grid */}
-      <div
-        style={{
-          maxWidth: "1300px",
-          margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "2px",
-        }}
-      >
+      {/* Grid — 1 col mobile, 2 col tablet, 3 col desktop */}
+      <div className="max-w-[1300px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[2px]">
         {products.map((p) => (
           <ProductCard key={p.name} {...p} href={AMAZON_URL} />
         ))}
@@ -95,128 +48,29 @@ function ProductCard({
   href: string;
 }) {
   return (
-    <div
-      className="reveal gold-border-card"
-      style={{
-        position: "relative",
-        overflow: "hidden",
-        transition: "transform 0.3s, box-shadow 0.3s",
-      }}
-      onMouseEnter={(e) => {
-        const el = e.currentTarget as HTMLElement;
-        el.style.transform = "translateY(-6px)";
-        el.style.boxShadow =
-          "0 24px 80px rgba(0,0,0,0.5), 0 0 40px rgba(200,151,63,0.25), 0 0 80px rgba(200,151,63,0.10)";
-        el.style.zIndex = "2";
-        const overlay = el.querySelector(".p-overlay") as HTMLElement | null;
-        if (overlay) overlay.style.opacity = "1";
-        const cta = el.querySelector(".p-cta") as HTMLElement | null;
-        if (cta) {
-          cta.style.transform = "translateY(0)";
-          cta.style.opacity = "1";
-        }
-        const img = el.querySelector("img") as HTMLElement | null;
-        if (img) img.style.filter = "saturate(1) brightness(1)";
-      }}
-      onMouseLeave={(e) => {
-        const el = e.currentTarget as HTMLElement;
-        el.style.transform = "translateY(0)";
-        el.style.boxShadow = "none";
-        el.style.zIndex = "auto";
-        const overlay = el.querySelector(".p-overlay") as HTMLElement | null;
-        if (overlay) overlay.style.opacity = "0.7";
-        const cta = el.querySelector(".p-cta") as HTMLElement | null;
-        if (cta) {
-          cta.style.transform = "translateY(10px)";
-          cta.style.opacity = "0";
-        }
-        const img = el.querySelector("img") as HTMLElement | null;
-        if (img) img.style.filter = "saturate(0.8) brightness(0.9)";
-      }}
-    >
+    <div className="reveal gold-border-card relative overflow-hidden transition-all duration-300 group hover:-translate-y-1.5 hover:shadow-[0_24px_80px_rgba(0,0,0,0.5),0_0_40px_rgba(200,151,63,0.25)] hover:z-[2]">
       <Image
         src={img}
         alt={alt}
         width={600}
         height={450}
-        style={{
-          width: "100%",
-          aspectRatio: "4/3",
-          objectFit: "cover",
-          display: "block",
-          filter: "saturate(0.8) brightness(0.9)",
-          transition: "filter 0.4s",
-        }}
+        className="w-full object-cover block transition-all duration-400 group-hover:saturate-100 group-hover:brightness-100"
+        style={{ aspectRatio: "4/3", filter: "saturate(0.8) brightness(0.9)" }}
       />
+      <div className="absolute inset-0 bg-gradient-to-t from-bg-void/90 via-transparent to-transparent opacity-70 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-      {/* Dark overlay */}
-      <div
-        className="p-overlay"
-        style={{
-          position: "absolute",
-          inset: 0,
-          background:
-            "linear-gradient(to top, rgba(3,8,15,0.9) 30%, transparent 70%)",
-          opacity: 0.7,
-          transition: "opacity 0.3s",
-          pointerEvents: "none",
-        }}
-      />
-
-      {/* Body */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          padding: "24px",
-        }}
-      >
-        <div
-          style={{
-            fontSize: "0.68rem",
-            letterSpacing: "0.22em",
-            textTransform: "uppercase",
-            color: "var(--color-gold-base)",
-            marginBottom: "6px",
-          }}
-        >
+      <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
+        <div className="text-[0.68rem] tracking-[0.22em] uppercase text-gold-base mb-1.5">
           {category}
         </div>
-        <div
-          style={{
-            fontFamily: "var(--font-display)",
-            fontWeight: 700,
-            fontSize: "1.1rem",
-            color: "var(--color-text-white)",
-            marginBottom: "12px",
-          }}
-        >
+        <div className="font-display font-bold text-base md:text-[1.1rem] text-text-white mb-3">
           {name}
         </div>
         <a
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="p-cta"
-          style={{
-            display: "inline-block",
-            padding: "9px 22px",
-            background:
-              "linear-gradient(135deg, var(--color-gold-base), var(--color-gold-bright))",
-            color: "var(--color-bg-void)",
-            fontFamily: "var(--font-display)",
-            fontWeight: 700,
-            fontSize: "0.72rem",
-            letterSpacing: "0.14em",
-            textTransform: "uppercase",
-            textDecoration: "none",
-            borderRadius: "2px",
-            transform: "translateY(10px)",
-            opacity: 0,
-            transition: "transform 0.3s, opacity 0.3s",
-          }}
+          className="inline-block px-5 py-2 bg-gradient-to-br from-gold-base to-gold-bright text-bg-void font-display font-bold text-[0.72rem] tracking-[0.14em] uppercase no-underline rounded-[2px] translate-y-2.5 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300"
         >
           View on Amazon
         </a>

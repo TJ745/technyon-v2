@@ -1,5 +1,4 @@
 "use client";
-
 import LegalLayout, {
   Section,
   Para,
@@ -44,7 +43,7 @@ export default function PrivacyPage() {
             "Contact information such as your name and email address when you submit our contact form",
             "Communication records including messages you send us and our responses",
             "Newsletter subscription details if you choose to subscribe",
-            "Usage data such as pages visited, time spent on site, and browser type (collected via analytics tools)",
+            "Usage data such as pages visited, time spent on site, and browser type",
             "Technical data including your IP address, device type, and operating system",
           ]}
         />
@@ -78,7 +77,7 @@ export default function PrivacyPage() {
           items={[
             "Consent — for newsletter subscriptions and marketing communications, where you have opted in",
             "Legitimate interests — for website analytics and improving our services, where this does not override your rights",
-            "Contract — where processing is necessary to respond to your enquiries or fulfil a service you have requested",
+            "Contract — where processing is necessary to respond to your enquiries or fulfil a requested service",
             "Legal obligation — where we are required to process data to comply with applicable law",
           ]}
         />
@@ -94,7 +93,7 @@ export default function PrivacyPage() {
         <List
           items={[
             "Essential cookies — required for the basic functioning of the website",
-            "Analytics cookies — used to understand visitor behaviour and improve our content (e.g. Google Analytics)",
+            "Analytics cookies — used to understand visitor behaviour and improve our content",
             "Preference cookies — used to remember your settings and preferences",
           ]}
         />
@@ -112,7 +111,7 @@ export default function PrivacyPage() {
         </Para>
         <List
           items={[
-            "Service providers who assist in operating our website and communications (e.g. email providers), under strict confidentiality agreements",
+            "Service providers who assist in operating our website and communications, under strict confidentiality agreements",
             "Analytics platforms such as Google Analytics to help us understand website usage",
             "Legal authorities where we are required to do so by law or court order",
           ]}

@@ -1,121 +1,50 @@
 "use client";
 
-import { companyLinks, legalLinks, socialLinks } from "@/constants/footer";
 import Link from "next/link";
+import { companyLinks, legalLinks, socialLinks } from "@/constants/footer";
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer
-      style={{
-        background: "#020609",
-        borderTop: "1px solid rgba(200,151,63,0.18)",
-        padding: "60px 5vw 30px",
-        position: "relative",
-        zIndex: 2,
-      }}
-    >
-      {/* Top grid */}
-      <div
-        style={{
-          maxWidth: "1300px",
-          margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "2fr 1fr 1fr 1fr",
-          gap: "3rem",
-          paddingBottom: "3rem",
-          borderBottom: "1px solid rgba(200,151,63,0.18)",
-          marginBottom: "2rem",
-        }}
-      >
+    <footer className="bg-[#020609] border-t border-border pt-14 pb-8 px-[5vw] relative z-2">
+      {/* Top grid — stacks on mobile, 2-col on tablet, 4-col on desktop */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-10 pb-10 border-b border-border mb-8">
         {/* Brand */}
         <div>
-          <span
-            style={{
-              display: "block",
-              fontFamily: "var(--font-display)",
-              fontWeight: 900,
-              fontSize: "1.4rem",
-              letterSpacing: "0.2em",
-              background: "linear-gradient(135deg, #C8973F, #F7E09A)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              marginBottom: "1rem",
-            }}
-          >
+          <span className="block font-display font-black text-[1.4rem] tracking-[0.2em] gold-text mb-4">
             TECHNYON
           </span>
-          <p
-            style={{
-              color: "var(--color-text-muted)",
-              fontSize: "0.88rem",
-              lineHeight: 1.7,
-              fontWeight: 300,
-              maxWidth: "280px",
-              marginBottom: "1.5rem",
-            }}
-          >
+          <p className="text-text-muted text-sm leading-relaxed font-light max-w-72 mb-6">
             Curated technology for modern living. Products selected with
             precision, delivered with care.
           </p>
           {/* Newsletter */}
-          <div style={{ display: "flex" }}>
+          <div className="flex">
             <input
               type="email"
               placeholder="Your email address"
-              style={{
-                flex: 1,
-                background: "var(--color-bg-card)",
-                border: "1px solid rgba(200,151,63,0.18)",
-                borderRight: "none",
-                padding: "10px 14px",
-                color: "var(--color-text-white)",
-                fontFamily: "var(--font-body)",
-                fontSize: "0.85rem",
-                borderRadius: "2px 0 0 2px",
-                outline: "none",
-              }}
+              className="flex-1 min-w-0 bg-bg-card border border-border border-r-0 px-3.5 py-2.5 text-text-white font-body text-sm rounded-[2px_0_0_2px] outline-none focus:border-gold-base transition-colors duration-300"
             />
-            <button
-              className="btn-primary"
-              style={{
-                borderRadius: "0 2px 2px 0",
-                padding: "10px 18px",
-                fontSize: "0.75rem",
-              }}
-            >
+            <button className="btn-primary rounded-[0_2px_2px_0] px-4 py-2.5 text-xs shrink-0">
               Subscribe
             </button>
           </div>
         </div>
 
-        {/* Company */}
         <FooterCol title="Company" links={companyLinks} />
-        {/* Legal */}
         <FooterCol title="Legal" links={legalLinks} />
-        {/* Social */}
-        <FooterCol title="Follow Us" links={socialLinks} external />
+        <FooterCol title="Follow Us" links={socialLinks} />
       </div>
 
       {/* Bottom */}
-      <div
-        style={{
-          maxWidth: "1300px",
-          margin: "0 auto",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          flexWrap: "wrap",
-          gap: "1rem",
-        }}
-      >
-        <p style={{ color: "var(--color-text-muted)", fontSize: "0.8rem" }}>
-          © 2025{" "}
-          <span style={{ color: "var(--color-gold-dim)" }}>TECHNYON</span>. All
+      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3">
+        <p className="text-text-muted text-xs text-center sm:text-left">
+          © {currentYear} <span className="text-gold-dim">TECHNYON</span>. All
           Rights Reserved.
         </p>
-        <p style={{ color: "var(--color-text-muted)", fontSize: "0.8rem" }}>
-          Designed with precision · London, UK
+        <p className="text-text-muted text-xs text-center sm:text-right">
+          Designed with ❤️ · London, UK
         </p>
       </div>
     </footer>
@@ -125,48 +54,23 @@ export default function Footer() {
 function FooterCol({
   title,
   links,
-  external,
 }: {
   title: string;
-  links: { label: string; href: string }[];
-  external?: boolean;
+  links: { label: string; href: string; external?: boolean }[];
 }) {
   return (
     <div>
-      <div
-        style={{
-          fontFamily: "var(--font-display)",
-          fontWeight: 700,
-          fontSize: "0.8rem",
-          letterSpacing: "0.2em",
-          textTransform: "uppercase",
-          color: "var(--color-gold-base)",
-          marginBottom: "1.4rem",
-        }}
-      >
+      <div className="font-display font-bold text-xs tracking-[0.2em] uppercase text-gold-base mb-5">
         {title}
       </div>
-      <ul style={{ listStyle: "none" }}>
+      <ul className="list-none space-y-3">
         {links.map((l) => (
-          <li key={l.href} style={{ marginBottom: "0.8rem" }}>
+          <li key={l.href}>
             <Link
               href={l.href}
-              target={external ? "_blank" : undefined}
-              rel={external ? "noopener noreferrer" : undefined}
-              style={{
-                color: "var(--color-text-muted)",
-                textDecoration: "none",
-                fontSize: "0.88rem",
-                transition: "color 0.25s",
-              }}
-              onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLElement).style.color =
-                  "var(--color-gold-bright)")
-              }
-              onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLElement).style.color =
-                  "var(--color-text-muted)")
-              }
+              target={l.external ? "_blank" : undefined}
+              rel={l.external ? "noopener noreferrer" : undefined}
+              className="text-text-muted no-underline text-sm hover:text-gold-bright transition-colors duration-250"
             >
               {l.label}
             </Link>
